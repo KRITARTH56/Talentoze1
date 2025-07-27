@@ -1,0 +1,1083 @@
+/* --- Global Variables (ensure these are consistent with your main styles.css) --- */
+:root {
+    --primary-color: #4CAF50; /* Vibrant green */
+    --primary-dark: #388E3C; /* Darker green for hover */
+    --secondary-color: #10B981; /* Teal-ish green for accents */
+    --dark-color: #2d5a3d; /* Deep charcoal for main text */
+    --light-color: #F8F9FA; /* Off-white for section backgrounds */
+    --gray-color: #6C757D; /* Muted gray for secondary text/metadata */
+    --border-color: #E0E0E0; /* Light gray for subtle borders */
+    --shadow-light: rgba(0, 0, 0, 0.05);
+    --shadow-medium: rgba(0, 0, 0, 0.1);
+    --shadow-strong: rgba(0, 0, 0, 0.15);
+    --transition-speed: 0.3s ease-in-out;
+    --font-primary: 'Inter', sans-serif;
+}
+
+/* --- Base Styles (Inherited/Consistent from styles.css) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-primary);
+    color: var(--dark-color);
+    line-height: 1.7;
+    background-color: #FFFFFF;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+h1 { font-size: 3rem; }
+h2 { font-size: 2.5rem; }
+h3 { font-size: 2rem; }
+h4 { font-size: 1.75rem; }
+
+p {
+    margin-bottom: 1rem;
+    color: var(--gray-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color var(--transition-speed);
+}
+
+a:hover {
+    color: var(--primary-dark);
+    text-decoration: underline;
+}
+
+.btn-contact {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0.375rem;
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-speed);
+    font-weight: 600;
+}
+
+.btn-contact:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px var(--shadow-light);
+}
+
+/* Primary Button (for CTA) */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all var(--transition-speed);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.4);
+}
+
+/* Secondary Button (for CTA) */
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all var(--transition-speed);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.2);
+}
+
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    color: #2d5a3d;
+}
+
+.nav-logo i {
+    color: #4CAF50;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0; /* Add this if not present to remove default ul margin */
+    padding: 0; /* Add this if not present to remove default ul padding */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    /* Ensure nav-link does not have padding on the sides that might break hover area */
+}
+
+.nav-link:hover {
+    color: #4CAF50;
+}
+
+.nav-cta-desktop { /* Existing desktop CTA */
+    display: flex;
+}
+
+.nav-cta-mobile { /* Existing mobile CTA, initially hidden */
+    display: none;
+}
+
+.btn-contact { /* Existing button styles */
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-contact:hover {
+    background-color: #388E3C;
+    transform: translateY(-2px);
+}
+
+/* --- Hamburger Icon Styles (from previous solution) --- */
+.hamburger {
+    display: none; /* Hidden by default on desktop */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+    z-index: 1001;
+    position: relative;
+}
+
+.hamburger .bar {
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* --- New Dropdown Menu Styles --- */
+
+/* Parent for positioning dropdown */
+.nav-item.has-dropdown {
+    position: relative; /* Crucial for positioning the dropdown-menu */
+}
+
+.has-dropdown .nav-link {
+    display: flex; /* Allow content and arrow to be aligned */
+    align-items: center;
+    gap: 5px; /* Space between text and arrow */
+}
+
+.dropdown-arrow {
+    font-size: 0.7em; /* Make the arrow smaller */
+    transition: transform 0.3s ease;
+}
+
+/* Rotate arrow on hover */
+.nav-item.has-dropdown:hover .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%; /* Position right below the nav-item */
+    left: 50%; /* Center horizontally relative to nav-item */
+    transform: translateX(-50%) translateY(10px); /* Adjust for positioning and initial offset */
+    background-color: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
+    min-width: 250px; /* Adjust as needed */
+    opacity: 0;
+    visibility: hidden; /* Hide dropdown by default */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 999; /* Ensure it's below the navbar, but above page content */
+    pointer-events: none; /* Prevents interaction when hidden */
+}
+
+/* Show dropdown on hover */
+.nav-item.has-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0); /* Slide up to final position */
+    pointer-events: all; /* Allow interaction */
+}
+
+/* Style the content inside the dropdown */
+.dropdown-content h4 {
+    font-size: 18px;
+    color: #2d5a3d; /* Or your primary dark color */
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.dropdown-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown-content li {
+    margin-bottom: 10px;
+}
+
+.dropdown-content li:last-child {
+    margin-bottom: 0;
+}
+
+.dropdown-content a {
+    color: #555;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s ease, padding-left 0.2s ease;
+    display: block; /* Make the entire list item clickable */
+    padding: 5px 0;
+}
+
+.dropdown-content a:hover {
+    color: #4CAF50;
+    padding-left: 5px; /* Small slide effect on hover */
+    text-decoration: none; /* Remove underline on hover, if browser adds one */
+}
+
+
+/* --- Responsive Styles for Mobile Menu (Adjusted for dropdown) --- */
+@media (max-width: 768px) {
+    .nav-menu { /* Mobile menu, existing styles */
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(15px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start; /* Adjust to flex-start for more natural scroll */
+        padding-top: 50px; /* Add padding for content */
+        gap: 25px; /* Slightly reduced gap for mobile */
+        transform: translateY(-100%);
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        opacity: 0;
+        pointer-events: none;
+        overflow-y: auto;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .nav-menu.active { /* Existing active state */
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .nav-cta-desktop { display: none; }
+    .nav-cta-mobile { display: block; margin-top: 20px; }
+    .hamburger { display: flex; }
+
+    .nav-item {
+        margin: 0;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-menu.active .nav-item {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    .nav-menu.active .nav-item:nth-child(1) { transition-delay: 0.1s; }
+    .nav-menu.active .nav-item:nth-child(2) { transition-delay: 0.15s; } /* This is now the solutions dropdown */
+    .nav-menu.active .nav-item:nth-child(3) { transition-delay: 0.2s; }
+    .nav-menu.active .nav-item:nth-child(4) { transition-delay: 0.25s; }
+    .nav-menu.active .nav-item:nth-child(5) { transition-delay: 0.3s; }
+    .nav-menu.active .nav-item:nth-child(6) { transition-delay: 0.35s; }
+    .nav-menu.active .nav-item:nth-child(7) { transition-delay: 0.4s; }
+
+
+    .nav-link {
+        font-size: 20px; /* Slightly smaller for better fit in mobile menu */
+        padding: 8px 0;
+        display: block;
+    }
+
+    body.menu-open { overflow: hidden; }
+
+    /* --- Mobile specific dropdown adjustments --- */
+    .nav-item.has-dropdown {
+        width: 100%; /* Take full width of parent menu */
+        text-align: center; /* Center the "Solutions" text */
+    }
+
+    .dropdown-arrow {
+        display: none; /* Hide arrow on mobile as it's not a hover effect */
+    }
+
+    /* Ensure this is within your @media (max-width: 768px) block */
+
+.dropdown-menu {
+    position: static; /* Remove absolute positioning */
+    transform: none; /* Remove transformations */
+    opacity: 1; /* Always visible in mobile menu if parent is active */
+    visibility: visible; /* Always visible in mobile menu if parent is active */
+    pointer-events: all; /* Always interactive in mobile menu */
+    box-shadow: none; /* Remove shadow */
+    border: none; /* Remove border */
+    background: transparent; /* Transparent background */
+    padding: 0; /* No padding */
+    min-width: auto; /* No min-width constraint */
+    margin-top: 10px; /* Space from parent link */
+    overflow: hidden; /* For collapse effect if using JS toggle */
+    max-height: 0; /* Start collapsed for animation */
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* For smooth collapse */
+}
+
+/* Style the content inside the mobile dropdown */
+.dropdown-content {
+    background-color: #f8f8f8; /* Light background for mobile sub-menu */
+    border-radius: 5px;
+    /* margin-left: 40%; -- REMOVE THIS for auto-centering with margin: 0 auto; */
+    padding: 10px; /* Added some internal padding for content */
+    width: 90%; /* Take up most of the width */
+    margin: 0 auto; /* Center the content block automatically */
+    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); /* Inner shadow */
+}
+
+.dropdown-solution {
+    /* margin-left: 40%; -- This is likely pushing the link too far right */
+    text-align: center; /* Center the "Solutions" text and arrow within the mobile menu item */
+    display: flex; /* Allow flex properties for alignment */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    gap: 5px; /* Space between "Solutions" text and arrow */
+    padding: 8px 0; /* Add some padding to the link itself */
+}
+
+.dropdown-content h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: center; /* Center the heading for mobile */
+}
+
+.dropdown-content ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center list items horizontally */
+}
+
+.dropdown-content li {
+    margin-bottom: 8px;
+    /* margin-left: 80%; -- REMOVE THIS as it will break centering */
+    width: 100%; /* Make list item take full width of dropdown-content */
+    text-align: center; /* Center the text within each list item */
+}
+
+.dropdown-content a {
+    font-size: 16px; /* Adjust font size for mobile sub-links */
+    color: #444;
+    padding: 5px; /* Add some padding to the link for click area */
+    display: block; /* Make the whole area clickable */
+    transition: background-color 0.2s ease; /* Smooth hover effect */
+}
+
+.dropdown-content a:hover {
+    background-color: #e0e0e0; /* Subtle background on hover */
+    border-radius: 3px;
+}
+
+    /* JavaScript controlled class for mobile dropdown */
+    .has-dropdown.active .dropdown-menu {
+        max-height: 300px; /* Or a value large enough to contain all content */
+        padding-top: 10px; /* Adjust if needed */
+        padding-bottom: 10px; /* Adjust if needed */
+    }
+}
+
+/* @media (max-width: 600px) from your previous snippet.
+   This rule is likely redundant or should be merged/removed, as the 768px query covers mobile.
+   If specific styles are needed below 600px, place them after 768px.
+*/
+/* @media (max-width: 600px) {
+    .nav-cta {
+        display: flex;
+        margin-bottom: 14px;
+    }
+} */
+
+.btn-demo, .btn-contact {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-demo {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-demo:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+.btn-contact {
+    background: transparent;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+
+.btn-contact:hover {
+    background: #4CAF50;
+    color: white;
+}
+.btn-demo, .btn-contact {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-demo {
+    background: #4CAF50;
+    color: white;
+}
+
+.btn-demo:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+}
+
+.btn-contact {
+    background: transparent;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+
+.btn-contact:hover {
+    background: #4CAF50;
+    color: white;
+}
+
+/* --- Page Hero Section --- */
+.page-hero {
+    padding: 8rem 0 6rem;
+    background: linear-gradient(135deg, var(--light-color) 0%, #E9ECEF 100%);
+    margin-top: 64px; /* Space for fixed navbar */
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+    line-height: 1.1;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+    color: var(--gray-color);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* --- General Section Header Styling --- */
+.section-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: var(--dark-color);
+    margin-bottom: 0.75rem;
+}
+
+.section-header p {
+    font-size: 1.15rem;
+    color: var(--gray-color);
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+
+/* --- Mission & Vision Section --- */
+.mission-vision {
+    padding: 5rem 0;
+    background-color: white;
+}
+
+.mission-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 3rem;
+}
+
+.mission-card, .vision-card {
+    background-color: var(--light-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 4px 15px var(--shadow-light);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.mission-card:hover, .vision-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px var(--shadow-medium);
+}
+
+.card-icon {
+    font-size: 3.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.mission-card h2, .vision-card h2 {
+    font-size: 2rem;
+    color: var(--dark-color);
+    margin-bottom: 1rem;
+}
+
+.mission-card p, .vision-card p {
+    font-size: 1.1rem;
+    color: var(--gray-color);
+    margin-bottom: 0;
+}
+
+/* Specific styling for vision card if needed, e.g., different background */
+.vision-card {
+    background-color: #E6F3EA; /* A slightly different light green */
+}
+
+
+/* --- Company Story Section --- */
+.company-story {
+    padding: 5rem 0;
+    background-color: var(--light-color);
+}
+
+.story-content {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 3rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+.story-text p {
+    font-size: 1.05rem;
+    color: var(--dark-color);
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+}
+
+.story-text p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* --- Values Section --- */
+.values {
+    padding: 5rem 0;
+    background-color: white;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+}
+
+.value-card {
+    background-color: var(--light-color);
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 4px 10px var(--shadow-light);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.value-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+.value-icon {
+    font-size: 2.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1.2rem;
+}
+
+.value-card h3 {
+    font-size: 1.6rem;
+    color: var(--dark-color);
+    margin-bottom: 0.75rem;
+}
+
+.value-card p {
+    font-size: 0.95rem;
+    color: var(--gray-color);
+    margin-bottom: 0;
+}
+
+
+/* --- Team Section --- */
+.team {
+    padding: 5rem 0;
+    background-color: var(--light-color);
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.team-member {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 0.75rem;
+    padding: 2.5rem;
+    text-align: center;
+    box-shadow: 0 4px 10px var(--shadow-light);
+    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+}
+
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px var(--shadow-medium);
+}
+
+.member-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--light-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 4rem;
+    color: var(--gray-color);
+    border: 2px dashed var(--border-color);
+    overflow: hidden; /* For actual images */
+}
+
+/* If you use actual images, add these styles: */
+/* .member-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+} */
+
+.team-member h3 {
+    font-size: 1.8rem;
+    color: var(--dark-color);
+    margin-bottom: 0.5rem;
+}
+
+.team-member .member-title {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.team-member .member-bio {
+    font-size: 0.95rem;
+    color: #fff;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+
+/* --- Stats Section --- */
+.company-stats {
+    padding: 5rem 0;
+    background-color: white;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2.5rem;
+    text-align: center;
+}
+
+.stat-item {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 2.5rem 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+    transition: transform var(--transition-speed);
+}
+
+.stat-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(76, 175, 80, 0.4);
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+/* --- CTA Section --- */
+.cta-section {
+    padding: 5rem 0;
+    background-color: var(--primary-color);
+    text-align: center;
+    color: white;
+}
+
+.cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-content h2 {
+    color: white;
+    font-size: 3rem;
+    margin-bottom: 1.2rem;
+}
+
+.cta-content p {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+}
+
+.cta-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+
+.footer {
+    background: #2d5a3d;
+    color: white;
+    padding: 60px 0 20px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.footer-logo i {
+    color: #4CAF50;
+}
+
+.footer-section h4 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section li {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+    color: #4CAF50;
+}
+
+.footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    color: #ccc;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #4CAF50;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.social-links a {
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-speed);
+    font-size: 1.1rem;
+}
+
+.social-links a:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-4px) rotate(5deg);
+    box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 1024px) {
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2.2rem; }
+    h3 { font-size: 1.8rem; }
+    h4 { font-size: 1.5rem; }
+
+    .hero-content h1 { font-size: 3rem; }
+    .hero-content p { font-size: 1.15rem; }
+
+    .section-header h2 { font-size: 2rem; }
+    .section-header p { font-size: 1.05rem; }
+
+    .mission-card h2, .vision-card h2 { font-size: 1.8rem; }
+    .mission-card p, .vision-card p { font-size: 1rem; }
+    .story-text p { font-size: 1rem; }
+    .value-card h3 { font-size: 1.4rem; }
+    .value-card p { font-size: 0.9rem; }
+    .team-member h3 { font-size: 1.6rem; }
+    .team-member .member-title { font-size: 0.9rem; }
+    .team-member .member-bio { font-size: 0.85rem; }
+    .stat-number { font-size: 3rem; }
+    .stat-label { font-size: 1rem; }
+    .cta-content h2 { font-size: 2.5rem; }
+    .cta-content p { font-size: 1.05rem; }
+    .btn-primary, .btn-secondary { padding: 0.8rem 1.5rem; font-size: 1rem; }
+}
+
+@media (max-width: 768px) {
+    .nav-menu { display: none; } /* Hide regular menu on mobile, expect JS for hamburger */
+
+    .page-hero { padding: 6rem 0 4rem; }
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content p { font-size: 1.05rem; }
+
+    .section-header { margin-bottom: 2.5rem; }
+    .section-header h2 { font-size: 1.8rem; }
+    .section-header p { font-size: 0.95rem; }
+
+    .mission-vision, .company-story, .values, .team, .company-stats, .cta-section {
+        padding: 3.5rem 0;
+    }
+
+    .mission-vision-grid, .values-grid, .team-grid, .stats-grid {
+        grid-template-columns: 1fr; /* Stack all cards/items vertically */
+        gap: 2rem;
+    }
+
+    .mission-card, .vision-card, .value-card, .team-member, .stat-item {
+        padding: 2rem;
+    }
+
+    .company-story .story-content {
+        padding: 2rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .footer { padding: 3rem 0 1.5rem; }
+    .footer-content { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; text-align: center; gap: 1.5rem; padding-top: 2rem; }
+    .social-links { margin-top: 1rem; }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.8rem; }
+    h3 { font-size: 1.5rem; }
+
+    .page-hero { padding: 4.5rem 0 3rem; }
+    .hero-content h1 { font-size: 2.2rem; }
+    .hero-content p { font-size: 0.9rem; }
+
+    .section-header h2 { font-size: 1.6rem; }
+    .section-header p { font-size: 0.85rem; }
+
+    .mission-vision, .company-story, .values, .team, .company-stats, .cta-section {
+        padding: 2.5rem 0;
+    }
+
+    .mission-card, .vision-card, .value-card, .team-member, .stat-item {
+        padding: 1.5rem;
+    }
+
+    .company-story .story-content {
+        padding: 1.5rem;
+    }
+
+    .card-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .mission-card h2, .vision-card h2 { font-size: 1.5rem; }
+    .mission-card p, .vision-card p { font-size: 0.9rem; }
+
+    .story-text p { font-size: 0.9rem; }
+
+    .value-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+    .value-card h3 { font-size: 1.3rem; }
+
+    .member-photo { width: 100px; height: 100px; font-size: 3rem; margin-bottom: 1rem; }
+    .team-member h3 { font-size: 1.4rem; }
+    .team-member .member-title { font-size: 0.8rem; }
+    .team-member .member-bio { font-size: 0.8rem; }
+
+    .stat-number { font-size: 2.5rem; }
+    .stat-label { font-size: 0.9rem; }
+
+    .cta-content h2 { font-size: 2rem; }
+    .cta-content p { font-size: 0.95rem; }
+    .btn-primary, .btn-secondary { padding: 0.7rem 1.2rem; font-size: 0.9rem; }
+}
