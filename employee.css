@@ -465,7 +465,6 @@ a:hover {
 
 .dropdown-menu {
     position: static; /* Remove absolute positioning */
-    transform: none; /* Remove transformations */
     opacity: 1; /* Always visible in mobile menu if parent is active */
     visibility: visible; /* Always visible in mobile menu if parent is active */
     pointer-events: all; /* Always interactive in mobile menu */
@@ -475,7 +474,6 @@ a:hover {
     padding: 0; /* No padding */
     min-width: auto; /* No min-width constraint */
     margin-top: 10px; /* Space from parent link */
-    overflow: hidden; /* For collapse effect if using JS toggle */
     max-height: 0; /* Start collapsed for animation */
     transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* For smooth collapse */
 }

@@ -5,45 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>Talentoze Documentation | API Reference | Developer Guides | HRMS Integration</title>
-    <meta name="description" content="Complete technical documentation for Talentoze HRMS. Find API references, developer guides, integration tutorials, and technical specifications.">
-    <meta name="keywords" content="Talentoze documentation, HRMS API, developer guides, integration, technical documentation, API reference, webhooks">
-    <meta name="author" content="Talentoze">
+    <title>SwingyFy Documentation | API Reference | Developer Guides | HRMS Integration</title>
+    <meta name="description" content="Complete technical documentation for SwingyFy HRMS. Find API references, developer guides, integration tutorials, and technical specifications.">
+    <meta name="keywords" content="SwingyFy documentation, HRMS API, developer guides, integration, technical documentation, API reference, webhooks">
+    <meta name="author" content="SwingyFy">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://www.talentoze.com/documentation">
+    <link rel="canonical" href="https://www.swingyfy.com/documentation">
     
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="Talentoze Documentation | API Reference & Developer Guides">
-    <meta property="og:description" content="Complete technical documentation for Talentoze HRMS. Find API references, developer guides, and integration tutorials.">
+    <meta property="og:title" content="SwingyFy Documentation | API Reference & Developer Guides">
+    <meta property="og:description" content="Complete technical documentation for SwingyFy HRMS. Find API references, developer guides, and integration tutorials.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.talentoze.com/documentation">
-    <meta property="og:image" content="https://www.talentoze.com/images/documentation-og.jpg">
-    <meta property="og:site_name" content="Talentoze">
+    <meta property="og:url" content="https://www.swingyfy.com/documentation">
+    <meta property="og:image" content="https://www.swingyfy.com/images/documentation-og.jpg">
+    <meta property="og:site_name" content="SwingyFy">
     
     <!-- Twitter Card Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Talentoze Documentation | API Reference & Developer Guides">
-    <meta name="twitter:description" content="Complete technical documentation for Talentoze HRMS API and integrations.">
-    <meta name="twitter:image" content="https://www.talentoze.com/images/documentation-twitter.jpg">
+    <meta name="twitter:title" content="SwingyFy Documentation | API Reference & Developer Guides">
+    <meta name="twitter:description" content="Complete technical documentation for SwingyFy HRMS API and integrations.">
+    <meta name="twitter:image" content="https://www.swingyfy.com/images/documentation-twitter.jpg">
     
     <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "TechArticle",
-        "name": "Talentoze Documentation",
-        "description": "Technical documentation and API reference for Talentoze HRMS",
-        "url": "https://www.talentoze.com/documentation",
+        "name": "SwingyFy Documentation",
+        "description": "Technical documentation and API reference for SwingyFy HRMS",
+        "url": "https://www.swingyfy.com/documentation",
         "author": {
             "@type": "Organization",
-            "name": "Talentoze"
+            "name": "SwingyFy"
         },
         "publisher": {
             "@type": "Organization",
-            "name": "Talentoze",
+            "name": "SwingyFy",
             "logo": {
                 "@type": "ImageObject",
-                "url": "https://www.talentoze.com/images/logo.png"
+                "url": "https://www.swingyfy.com/images/logo.png"
             }
         }
     }
@@ -58,10 +58,12 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-users-cog"></i>
-                <span>Talentoze</span>
-            </div>
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+                <div class="nav-logo">
+                    <i class="fas fa-users-cog"></i>
+                    <span>SwingyFy</span>
+                </div>
+            </a>
             <ul class="nav-menu" id="navMenu">
                 <li class="nav-item">
                     <a href="index.html" class="nav-link">Home</a>
@@ -111,8 +113,8 @@
     <section class="page-hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Talentoze Developer Documentation</h1>
-                <p>Comprehensive guides, API references, and integration tutorials to help you build powerful HR solutions with Talentoze</p>
+                <h1>SwingyFy Developer Documentation</h1>
+                <p>Comprehensive guides, API references, and integration tutorials to help you build powerful HR solutions with SwingyFy</p>
                 <div class="doc-version">
                     <span class="version-badge">API Version 2.1</span>
                     <span class="last-updated">Last updated: July 2024</span>
@@ -126,7 +128,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>Quick Start Guide</h2>
-                <p>Get up and running with Talentoze API in minutes</p>
+                <p>Get up and running with SwingyFy API in minutes</p>
             </div>
             
             <div class="quick-start-steps">
@@ -142,7 +144,7 @@
                     <h3>Make Your First Request</h3>
                     <p>Test the connection with a simple GET request to our employees endpoint.</p>
                     <pre><code class="language-bash">curl -H "Authorization: Bearer YOUR_API_KEY" \
-https://api.talentoze.com/v2/employees</code></pre>
+https://api.swingyfy.com/v2/employees</code></pre>
                 </div>
                 
                 <div class="step-card">
@@ -230,7 +232,7 @@ https://api.talentoze.com/v2/employees</code></pre>
                 <div class="example-card" id="employees-api">
                     <h3>Create Employee</h3>
                     <p>Add a new employee to your organization</p>
-                    <pre><code class="language-javascript">const response = await fetch('https://api.talentoze.com/v2/employees', {
+                    <pre><code class="language-javascript">const response = await fetch('https://api.swingyfy.com/v2/employees', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY',
@@ -255,7 +257,7 @@ console.log('Employee created:', employee);</code></pre>
                     <p>Run payroll for a specific pay period</p>
                     <pre><code class="language-python">import requests
 
-url = "https://api.talentoze.com/v2/payroll/process"
+url = "https://api.swingyfy.com/v2/payroll/process"
 headers = {
     "Authorization": "Bearer YOUR_API_KEY",
     "Content-Type": "application/json"
@@ -276,7 +278,7 @@ print(f"Payroll processed: {payroll_result['status']}")</code></pre>
                     <h3>Get Performance Data</h3>
                     <p>Retrieve performance metrics for an employee</p>
                     <pre><code class="language-bash">curl -X GET \
-  "https://api.talentoze.com/v2/performance/employee/emp_123" \
+  "https://api.swingyfy.com/v2/performance/employee/emp_123" \
   -H "Authorization: Bearer YOUR_API_KEY" \
   -H "Accept: application/json"</code></pre>
                     <p><strong>Response:</strong></p>
@@ -317,7 +319,7 @@ print(f"Payroll processed: {payroll_result['status']}")</code></pre>
   format: 'json'
 };
 
-fetch('https://api.talentoze.com/v2/reports/generate', {
+fetch('https://api.swingyfy.com/v2/reports/generate', {
   method: 'POST',
   headers: {
     'Authorization': 'Bearer YOUR_API_KEY',
@@ -351,14 +353,14 @@ fetch('https://api.talentoze.com/v2/reports/generate', {
                     <h3>OAuth 2.0</h3>
                     <p>For applications requiring user-specific access, use OAuth 2.0 flow:</p>
                     <pre><code class="language-javascript">// Step 1: Redirect user to authorization URL
-const authUrl = 'https://api.talentoze.com/oauth/authorize?' +
+const authUrl = 'https://api.swingyfy.com/oauth/authorize?' +
   'client_id=YOUR_CLIENT_ID&' +
   'redirect_uri=YOUR_REDIRECT_URI&' +
   'response_type=code&' +
   'scope=employees:read payroll:write';
 
 // Step 2: Exchange code for access token
-const tokenResponse = await fetch('https://api.talentoze.com/oauth/token', {
+const tokenResponse = await fetch('https://api.swingyfy.com/oauth/token', {
   method: 'POST',
   headers: { 'Content-Type': 'application/json' },
   body: JSON.stringify({
@@ -433,10 +435,10 @@ const tokenResponse = await fetch('https://api.talentoze.com/oauth/token', {
                         <h3>JavaScript SDK</h3>
                     </div>
                     <p>Full-featured SDK for Node.js and browser environments</p>
-                    <pre><code class="language-bash">npm install @talentoze/sdk</code></pre>
-                    <pre><code class="language-javascript">import Talentoze from '@talentoze/sdk';
+                    <pre><code class="language-bash">npm install @swingyfy/sdk</code></pre>
+                    <pre><code class="language-javascript">import SwingyFy from '@swingyfy/sdk';
 
-const client = new Talentoze({
+const client = new SwingyFy({
   apiKey: 'YOUR_API_KEY'
 });
 
@@ -449,9 +451,9 @@ console.log(employees);</code></pre>
                         <i class="fab fa-python"></i>
                         <h3>Python SDK</h3>
                     </div>
-                    <p>Pythonic interface for all Talentoze API endpoints</p>
-                    <pre><code class="language-bash">pip install talentoze-python</code></pre>
-                    <pre><code class="language-python">from talentoze import Client
+                    <p>Pythonic interface for all SwingyFy API endpoints</p>
+                    <pre><code class="language-bash">pip install swingyfy-python</code></pre>
+                    <pre><code class="language-python">from swingyfy import Client
 
 client = Client(api_key='YOUR_API_KEY')
 
@@ -489,7 +491,7 @@ for employee in employees:
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h4>Developer Support</h4>
-                                <p>developers@talentoze.com</p>
+                                <p>developers@swingyfy.com</p>
                             </div>
                         </div>
                     </div>
@@ -511,7 +513,7 @@ for employee in employees:
                 <div class="footer-section">
                     <div class="footer-logo">
                         <i class="fas fa-users-cog"></i>
-                        <span>Talentoze</span>
+                        <span>SwingyFy</span>
                     </div>
                     <p>Transforming HR operations with intelligent automation and real-time insights.</p>
                 </div>
@@ -548,7 +550,7 @@ for employee in employees:
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 Talentoze. All rights reserved.</p>
+                <p>&copy; 2024 SwingyFy. All rights reserved.</p>
                 <div class="social-links">
                     <a href="#"><i class="fab fa-linkedin"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
