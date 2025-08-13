@@ -192,25 +192,24 @@ a:hover {
   border-radius: 0.25rem;
 }
 
+/* --- General Navigation Bar Styles --- */
 .navbar {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
 }
 
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 70px;
+    padding: 0 20px;
 }
 
 .nav-logo {
@@ -222,206 +221,150 @@ a:hover {
     color: #2d5a3d;
 }
 
-.nav-logo i {
-    color: #4CAF50;
-}
-
 .nav-menu {
     display: flex;
-    list-style: none;
     gap: 30px;
-    margin: 0; /* Add this if not present to remove default ul margin */
-    padding: 0; /* Add this if not present to remove default ul padding */
+    list-style: none;
 }
 
-.nav-link {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    transition: color 0.3s ease;
-    /* Ensure nav-link does not have padding on the sides that might break hover area */
-}
-
-.nav-link:hover {
-    color: #4CAF50;
-}
-
-.nav-cta-desktop { /* Existing desktop CTA */
-    display: flex;
-}
-
-.nav-cta-mobile { /* Existing mobile CTA, initially hidden */
-    display: none;
-}
-
-.btn-contact { /* Existing button styles */
-    background-color: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.btn-contact:hover {
-    background-color: #388E3C;
-    transform: translateY(-2px);
-}
-
-/* --- Hamburger Icon Styles (from previous solution) --- */
-.hamburger {
-    display: none; /* Hidden by default on desktop */
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-    z-index: 1001;
+.nav-item {
     position: relative;
 }
 
-.hamburger .bar {
-    width: 100%;
-    height: 3px;
-    background-color: #333;
-    border-radius: 2px;
-    transition: all 0.3s ease;
+.nav-link {
+    font-size: 16px;
+    font-weight: 500;
+    color: #555;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 25px 0;
 }
 
-.hamburger.active .bar:nth-child(1) {
-    transform: translateY(9px) rotate(45deg);
-}
-
-.hamburger.active .bar:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active .bar:nth-child(3) {
-    transform: translateY(-9px) rotate(-45deg);
-}
-
-/* --- New Dropdown Menu Styles --- */
-
-/* Parent for positioning dropdown */
-.nav-item.has-dropdown {
-    position: relative; /* Crucial for positioning the dropdown-menu */
-}
-
-.has-dropdown .nav-link {
-    display: flex; /* Allow content and arrow to be aligned */
-    align-items: center;
-    gap: 5px; /* Space between text and arrow */
+.nav-link:hover {
+    color: #10b981;
 }
 
 .dropdown-arrow {
-    font-size: 0.7em; /* Make the arrow smaller */
+    margin-left: 5px;
+    font-size: 12px;
     transition: transform 0.3s ease;
 }
 
-/* Rotate arrow on hover */
-.nav-item.has-dropdown:hover .dropdown-arrow {
+.has-dropdown:hover .dropdown-arrow {
     transform: rotate(180deg);
 }
 
-.dropdown-menu {
+.dropdown-content {
+    /* Initially hidden by default */
+    display: none; 
     position: absolute;
-    top: 100%; /* Position right below the nav-item */
-    left: 50%; /* Center horizontally relative to nav-item */
-    transform: translateX(-50%) translateY(10px); /* Adjust for positioning and initial offset */
-    background-color: white;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    min-width: 220px;
     border-radius: 8px;
-    padding: 20px;
-    min-width: 250px; /* Adjust as needed */
+    box-shadow: 0 4px 20px #000;
     opacity: 0;
-    visibility: hidden; /* Hide dropdown by default */
-    transition: opacity 0.3s ease, transform 0.3s ease;
-    z-index: 999; /* Ensure it's below the navbar, but above page content */
-    pointer-events: none; /* Prevents interaction when hidden */
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+    z-index: 999;
 }
 
-/* Show dropdown on hover */
-.nav-item.has-dropdown:hover .dropdown-menu {
+.has-dropdown:hover .dropdown-content {
+    display: block;
     opacity: 1;
     visibility: visible;
-    transform: translateX(-50%) translateY(0); /* Slide up to final position */
-    pointer-events: all; /* Allow interaction */
-}
-
-/* Style the content inside the dropdown */
-.dropdown-content h4 {
-    font-size: 18px;
-    color: #2d5a3d; /* Or your primary dark color */
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    border-bottom: 1px solid #eee;
+    pointer-events: all;
+    transform: translateY(0);
 }
 
 .dropdown-content ul {
     list-style: none;
-    padding: 0;
+    padding: 10px 0;
     margin: 0;
 }
 
 .dropdown-content li {
-    margin-bottom: 10px;
-}
-
-.dropdown-content li:last-child {
-    margin-bottom: 0;
+    padding: 0 20px;
 }
 
 .dropdown-content a {
-    color: #555;
+    display: block;
+    padding: 10px 0;
+    font-size: 15px;
+    color: #444;
     text-decoration: none;
-    font-weight: 400;
-    transition: color 0.2s ease, padding-left 0.2s ease;
-    display: block; /* Make the entire list item clickable */
-    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
 }
 
 .dropdown-content a:hover {
-    color: #4CAF50;
-    padding-left: 5px; /* Small slide effect on hover */
-    text-decoration: none; /* Remove underline on hover, if browser adds one */
+    color: #10b981;
+    background-color: #f8f9fa;
 }
 
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 25px;
+    height: 21px;
+    transition: all 0.3s ease;
+}
 
-/* --- Responsive Styles for Mobile Menu (Adjusted for dropdown) --- */
+.bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #333;
+    transition: all 0.3s ease;
+}
+
+/* --- Mobile Styles --- */
 @media (max-width: 768px) {
-    .nav-menu { /* Mobile menu, existing styles */
+    .nav-menu {
+        display: flex;
         position: fixed;
         top: 70px;
         left: 0;
         width: 100%;
         height: calc(100vh - 70px);
-        background: rgba(255, 255, 255, 0.98);
+        background: #c2f8e6;
         backdrop-filter: blur(15px);
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start; /* Adjust to flex-start for more natural scroll */
-        padding-top: 50px; /* Add padding for content */
-        gap: 25px; /* Slightly reduced gap for mobile */
+        justify-content: flex-start;
+        padding-top: 50px;
+        gap: 25px;
         transform: translateY(-100%);
         transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
         opacity: 0;
         pointer-events: none;
         overflow-y: auto;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .nav-menu.active { /* Existing active state */
+    .nav-menu.active {
         transform: translateY(0);
         opacity: 1;
         pointer-events: all;
     }
 
-    .nav-cta-desktop { display: none; }
-    .nav-cta-mobile { display: block; margin-top: 20px; }
-    .hamburger { display: flex; }
+    .nav-cta-desktop {
+        display: none;
+    }
+
+    .nav-cta-mobile {
+        display: block;
+        margin-top: 20px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
 
     .nav-item {
         margin: 0;
@@ -434,111 +377,119 @@ a:hover {
         opacity: 1;
         transform: translateY(0);
     }
-    .nav-menu.active .nav-item:nth-child(1) { transition-delay: 0.1s; }
-    .nav-menu.active .nav-item:nth-child(2) { transition-delay: 0.15s; } /* This is now the solutions dropdown */
-    .nav-menu.active .nav-item:nth-child(3) { transition-delay: 0.2s; }
-    .nav-menu.active .nav-item:nth-child(4) { transition-delay: 0.25s; }
-    .nav-menu.active .nav-item:nth-child(5) { transition-delay: 0.3s; }
-    .nav-menu.active .nav-item:nth-child(6) { transition-delay: 0.35s; }
-    .nav-menu.active .nav-item:nth-child(7) { transition-delay: 0.4s; }
 
+    .nav-menu.active .nav-item:nth-child(1) {
+        transition-delay: 0.1s;
+    }
+
+    .nav-menu.active .nav-item:nth-child(2) {
+        transition-delay: 0.15s;
+    }
+
+    .nav-menu.active .nav-item:nth-child(3) {
+        transition-delay: 0.2s;
+    }
+
+    .nav-menu.active .nav-item:nth-child(4) {
+        transition-delay: 0.25s;
+    }
+
+    .nav-menu.active .nav-item:nth-child(5) {
+        transition-delay: 0.3s;
+    }
+
+    .nav-menu.active .nav-item:nth-child(6) {
+        transition-delay: 0.35s;
+    }
+
+    .nav-menu.active .nav-item:nth-child(7) {
+        transition-delay: 0.4s;
+    }
 
     .nav-link {
-        font-size: 20px; /* Slightly smaller for better fit in mobile menu */
+        font-size: 20px;
         padding: 8px 0;
         display: block;
     }
 
-    body.menu-open { overflow: hidden; }
+    body.menu-open {
+        overflow: hidden;
+    }
 
-    /* --- Mobile specific dropdown adjustments --- */
     .nav-item.has-dropdown {
-        width: 100%; /* Take full width of parent menu */
-        text-align: center; /* Center the "Solutions" text */
+        width: 100%;
+        text-align: center;
     }
 
     .dropdown-arrow {
-        display: none; /* Hide arrow on mobile as it's not a hover effect */
+        display: inline-block; /* Show arrow on mobile */
+        transition: transform 0.3s ease;
     }
 
-    /* Ensure this is within your @media (max-width: 768px) block */
+    .nav-item.has-dropdown.active .dropdown-arrow {
+        transform: rotate(180deg);
+    }
 
-.dropdown-menu {
-    position: static; /* Remove absolute positioning */
-    opacity: 1; /* Always visible in mobile menu if parent is active */
-    visibility: visible; /* Always visible in mobile menu if parent is active */
-    pointer-events: all; /* Always interactive in mobile menu */
-    box-shadow: none; /* Remove shadow */
-    border: none; /* Remove border */
-    background: transparent; /* Transparent background */
-    padding: 0; /* No padding */
-    min-width: auto; /* No min-width constraint */
-    margin-top: 10px; /* Space from parent link */
-    max-height: 0; /* Start collapsed for animation */
-    transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* For smooth collapse */
-}
+    /*
+     * The key mobile dropdown styles. 
+     * Initial state is hidden with max-height: 0.
+     * The 'active' class will toggle the max-height to open it.
+     */
+    .dropdown-content {
+        position: static;
+        max-height: 0; /* Initially hidden */
+        overflow: hidden; /* Crucial for hiding content */
+        opacity: 1; /* Always visible for transition */
+        visibility: visible; /* Always visible for transition */
+        pointer-events: all; /* Always interactive */
+        box-shadow: none;
+        border: none;
+        background: #f8f8f8;
+        padding: 0;
+        min-width: auto;
+        margin-top: 10px;
+        transition: max-height 0.4s ease-out; /* Transition for smooth collapse */
+    }
 
-/* Style the content inside the mobile dropdown */
-.dropdown-content {
-    background-color: #f8f8f8; /* Light background for mobile sub-menu */
-    border-radius: 5px;
-    /* margin-left: 40%; -- REMOVE THIS for auto-centering with margin: 0 auto; */
-    padding: 10px; /* Added some internal padding for content */
-    width: 90%; /* Take up most of the width */
-    margin: 0 auto; /* Center the content block automatically */
-    box-shadow: inset 0 2px 5px rgba(0,0,0,0.05); /* Inner shadow */
-}
+    .nav-item.has-dropdown.active .dropdown-content {
+        max-height: 300px; /* Adjust this value as needed to fit content */
+        padding: 10px;
+    }
 
-.dropdown-solution {
-    /* margin-left: 40%; -- This is likely pushing the link too far right */
-    text-align: center; /* Center the "Solutions" text and arrow within the mobile menu item */
-    display: flex; /* Allow flex properties for alignment */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
-    gap: 5px; /* Space between "Solutions" text and arrow */
-    padding: 8px 0; /* Add some padding to the link itself */
-}
+    .dropdown-solution {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        padding: 8px 0;
+    }
 
-.dropdown-content h4 {
-    font-size: 16px;
-    margin-bottom: 10px;
-    text-align: center; /* Center the heading for mobile */
-}
+    .dropdown-content ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-.dropdown-content ul {
-    list-style: none; /* Remove bullet points */
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Center list items horizontally */
-}
+    .dropdown-content li {
+        margin-bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
 
-.dropdown-content li {
-    margin-bottom: 8px;
-    /* margin-left: 80%; -- REMOVE THIS as it will break centering */
-    width: 100%; /* Make list item take full width of dropdown-content */
-    text-align: center; /* Center the text within each list item */
-}
+    .dropdown-content a {
+        font-size: 16px;
+        color: #444;
+        padding: 5px;
+        display: block;
+        transition: background-color 0.2s ease;
+    }
 
-.dropdown-content a {
-    font-size: 16px; /* Adjust font size for mobile sub-links */
-    color: #444;
-    padding: 5px; /* Add some padding to the link for click area */
-    display: block; /* Make the whole area clickable */
-    transition: background-color 0.2s ease; /* Smooth hover effect */
-}
-
-.dropdown-content a:hover {
-    background-color: #e0e0e0; /* Subtle background on hover */
-    border-radius: 3px;
-}
-
-    /* JavaScript controlled class for mobile dropdown */
-    .has-dropdown.active .dropdown-menu {
-        max-height: 300px; /* Or a value large enough to contain all content */
-        padding-top: 10px; /* Adjust if needed */
-        padding-bottom: 10px; /* Adjust if needed */
+    .dropdown-content a:hover {
+        background-color: #e0e0e0;
+        border-radius: 3px;
     }
 }
 

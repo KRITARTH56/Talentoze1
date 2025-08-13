@@ -7,80 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- Helper function to close all dropdowns ---
     function closeAllDropdowns() {
         document.querySelectorAll('.nav-item.has-dropdown').forEach(dropdownParent => {
-            dropdownParent.classList.remove('active'); // Remove 'active' from all dropdown parents
+            dropdownParent.classList.remove('active');
+            const dropdownContent = dropdownParent.querySelector('.dropdown-content');
+            if (dropdownContent) {
+                // Collapse the dropdown by setting max-height to 0
+                dropdownContent.style.maxHeight = '0';
+            }
         });
     }
-
-    // --- Smooth scrolling for navigation links and main menu closing ---
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const parentListItem = this.parentElement;
-            const isDropdownToggle = parentListItem.classList.contains('has-dropdown');
-            const isMobile = window.innerWidth <= 768; // Your mobile breakpoint
-            const targetId = this.getAttribute('href');
-            const isAnchorLink = targetId && targetId.startsWith('#');
-            const isExternalPageLink = targetId && !targetId.startsWith('#') && targetId !== 'javascript:void(0)';
-
-            // 1. Handle dropdown toggling on mobile
-            if (isDropdownToggle && isMobile && navMenu && navMenu.classList.contains('active')) {
-                e.preventDefault(); // Prevent default link navigation for the dropdown toggle
-
-                if (parentListItem.classList.contains('active')) {
-                    parentListItem.classList.remove('active'); // Close this dropdown
-                } else {
-                    closeAllDropdowns(); // Close all other dropdowns first
-                    parentListItem.classList.add('active'); // Open this dropdown
-                }
-            }
-            // 2. Handle smooth scrolling for anchor links (e.g., #features)
-            else if (isAnchorLink) {
-                e.preventDefault(); // Prevent default browser jump
-                const targetSection = document.querySelector(targetId);
-
-                if (targetSection) {
-                    const offsetTop = targetSection.offsetTop - 70; // Account for fixed navbar
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-
-                // Close mobile menu AND any open dropdowns after smooth scrolling
-                if (navMenu && navMenu.classList.contains('active')) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    body.classList.remove('menu-open');
-                    closeAllDropdowns(); // <-- This ensures solutions dropdown closes
-                }
-            }
-            // 3. Handle direct page navigation (e.g., about.html, contact.html)
-            else if (isExternalPageLink) {
-                // Do NOT preventDefault() here. Let the browser navigate.
-                // But still close the mobile menu and any open dropdowns before navigation.
-                if (navMenu && navMenu.classList.contains('active')) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    body.classList.remove('menu-open');
-                    closeAllDropdowns(); // <-- This ensures solutions dropdown closes
-                }
-                // The browser will naturally follow the href after this.
-            }
-            // 4. Handle clicks on sub-links within a dropdown (e.g., Employee Management)
-            // This is already implicitly handled by the navLinks.forEach,
-            // but we need to ensure closeAllDropdowns is called.
-            // If you have specific handling for these, make sure closeAllDropdowns is there.
-            // Example:
-            // if (this.closest('.dropdown-menu')) { // If link is inside a dropdown menu
-            //    if (navMenu && navMenu.classList.contains('active')) {
-            //        hamburger.classList.remove('active');
-            //        navMenu.classList.remove('active');
-            //        body.classList.remove('menu-open');
-            //        closeAllDropdowns(); // Ensure dropdown and main menu close
-            //    }
-            // }
-
-        });
-    });
 
     // --- Mobile hamburger menu toggle ---
     if (hamburger && navMenu) {
@@ -91,13 +25,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // If the main menu is closing, close any open sub-dropdowns too
             if (!navMenu.classList.contains('active')) {
-                closeAllDropdowns(); // <-- This ensures solutions dropdown closes
+                closeAllDropdowns();
             }
         });
 
         // Close main menu and any open sub-dropdowns if clicking outside of them
         document.addEventListener('click', (event) => {
-            if (navMenu && navMenu.classList.contains('active')) {
+            if (navMenu.classList.contains('active')) {
                 const isClickInsideNavMenu = navMenu.contains(event.target);
                 const isClickOnHamburger = hamburger.contains(event.target);
 
@@ -105,16 +39,91 @@ document.addEventListener('DOMContentLoaded', function() {
                     hamburger.classList.remove('active');
                     navMenu.classList.remove('active');
                     body.classList.remove('menu-open');
-                    closeAllDropdowns(); // <-- This ensures solutions dropdown closes
+                    closeAllDropdowns();
+                }
+            }
+        });
+    }
+
+    // --- Smooth scrolling and link handling for all nav links ---
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const isMobile = window.innerWidth <= 768; // Your mobile breakpoint
+            const targetId = this.getAttribute('href');
+            const isAnchorLink = targetId && targetId.startsWith('#');
+            const isExternalPageLink = targetId && !targetId.startsWith('#') && targetId !== 'javascript:void(0)';
+
+            // 1. Handle smooth scrolling for anchor links (e.g., #features)
+            if (isAnchorLink) {
+                e.preventDefault(); // Prevent default browser jump
+                const targetSection = document.querySelector(targetId);
+
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 70;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+
+                // Close mobile menu AND any open dropdowns after smooth scrolling
+                if (navMenu.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    closeAllDropdowns();
+                }
+            }
+            // 2. Handle direct page navigation (e.g., about.html, contact.html)
+            else if (isExternalPageLink) {
+                // Ensure menu and dropdowns close before navigating
+                if (navMenu.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    closeAllDropdowns();
+                }
+            }
+            // 3. Handle clicks on sub-links within a dropdown (e.g., Employee Management)
+            else if (this.closest('.dropdown-content')) {
+                if (navMenu.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    closeAllDropdowns();
+                }
+            }
+        });
+    });
+
+    // --- Dedicated Mobile Solutions Dropdown Toggler ---
+    const solutionsLink = document.querySelector('.dropdown-solution');
+    if (solutionsLink) {
+        solutionsLink.addEventListener('click', function(e) {
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                e.preventDefault(); // Prevent page navigation
+                const parentLi = this.closest('.nav-item.has-dropdown');
+                const dropdownContent = parentLi.querySelector('.dropdown-content');
+
+                if (parentLi.classList.contains('active')) {
+                    // If it's already open, close it
+                    parentLi.classList.remove('active');
+                    dropdownContent.style.maxHeight = '0';
+                } else {
+                    // If it's closed, close all others and open this one
+                    closeAllDropdowns();
+                    parentLi.classList.add('active');
+                    // Set max-height to its scrollHeight to animate opening
+                    dropdownContent.style.maxHeight = dropdownContent.scrollHeight + 'px';
                 }
             }
         });
     }
 
     // --- Global Functions (Make sure they also close the mobile menu and dropdowns) ---
-    // Example for scrollToContact:
     window.scrollToContact = function() {
-        const contactSection = document.getElementById('contact'); // Use correct ID if it's 'contact'
+        const contactSection = document.getElementById('contact');
         if (contactSection) {
             const offsetTop = contactSection.offsetTop - 70;
             window.scrollTo({
@@ -122,37 +131,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth'
             });
         } else {
-            // Fallback for contact page itself
             window.location.href = 'contact.html';
         }
 
-        // Close the mobile menu and any open dropdowns after clicking the contact button (if open)
-        if (navMenu && navMenu.classList.contains('active')) {
+        if (navMenu.classList.contains('active')) {
             hamburger.classList.remove('active');
             navMenu.classList.remove('active');
             body.classList.remove('menu-open');
-            closeAllDropdowns(); // <-- This ensures solutions dropdown closes
+            closeAllDropdowns();
         }
     };
-
-    // Make similar adjustments to any other global functions like scrollToSection
-    // that might be called by an `onclick` attribute on your HTML elements.
-    // For example, if you have a `scrollToAbout()` function:
-    // window.scrollToAbout = function() {
-    //    // ... your scroll logic ...
-    //    if (navMenu && navMenu.classList.contains('active')) {
-    //        hamburger.classList.remove('active');
-    //        navMenu.classList.remove('active');
-    //        body.classList.remove('menu-open');
-    //        closeAllDropdowns();
-    //    }
-    // };
-
-    // --- All other existing JS functionalities (Navbar background, Modal, Forms, etc.) ---
-    // (These sections remain exactly as provided in your last full script)
-    // ... (Your existing code for navbar scroll, modal, forms, animations, etc.) ...
-
-
+    
     // Navbar background change on scroll
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', function() {
@@ -164,6 +153,7 @@ document.addEventListener('DOMContentLoaded', function() {
             navbar.style.boxShadow = 'none';
         }
     });
+
 
     // Modal functionality
     const modal = document.getElementById('demoModal');
